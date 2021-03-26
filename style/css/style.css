@@ -1,0 +1,193 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: Parastoo;
+    src: url('../font/Parastoo.eot');
+    src: url('../font/Parastoo.eot?#iefix') format('embedded-opentype'),
+    url('../font/Parastoo.woff') format('woff'),
+    url('../font/Parastoo.ttf') format('truetype');
+}
+
+@keyframes mic-anim {
+    0% {
+        box-shadow: 0 0 0 #3282b8 , 0 0 0 #3282b8 , 0 0 0 #3282b8 ,  0 0 #3282b8;
+    }
+    22% {
+        box-shadow: 4px 4px 5px #3282b8 , -4px -4px 5px #3282b8 , 4px -4px 5px #3282b8 ,  -4px 4px 5px #3282b8;
+    }
+    35% {
+        background-color: #0f4c75;
+        box-shadow: 0 0 0 #3282b8 , 0 0 0 #3282b8 , 0 0 0 #3282b8 ,  0 0 #3282b8;
+        transform: scale(1 , 1);
+    }
+    60% {
+        background-color: #3282b8;
+        transform: scale(1.1 , 1.1);
+        box-shadow: 3px 3px 4px #0f4c75 , -3px -3px 4px #0f4c75 , 3px -3px 4px #0f4c75 ,  -3px 3px 4px #0f4c75;
+    }
+    85% {
+        background-color: #0f4c75;
+        transform: scale(1 , 1);
+        box-shadow: 0 0 0 #3282b8 , 0 0 0 #3282b8 , 0 0 0 #3282b8 ,  0 0 #3282b8;
+    }
+
+}
+
+.font{
+    font-family: Parastoo;
+}
+
+.bg-dark-1{
+    background-color: #1b1e21;
+}
+.bg-dark-2{
+    background-color: #2D2D2D;
+}
+.bg-dark-3{
+    background-color: #32383D;
+}
+.bg-dark-4{
+    background-color: #5a6268;
+}
+.bg-blue-1{
+    background-color: #0f4c75;
+}
+.bg-blue-2{
+    background-color: #3282b8;
+}
+.bg-blue-3{
+    background-color: #bbe1fa;
+}
+
+.no-support{
+    font-family: Parastoo;
+    display: none;
+}
+
+.text-editor-head{
+    border-radius: 7px 7px 0 0 ;
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+}
+.text-editor-body textarea{
+    border-radius: 0 0 7px 7px;
+    width: 100%;
+    border: none;
+    resize: vertical;
+    min-height: 200px;
+    overflow: hidden;
+    padding: 7px 15px 7px 15px;
+    font-family: Parastoo;
+}
+.text-editor-body textarea:focus{
+    border: 1px #5a6268 solid;
+    outline: none;
+}
+
+.mic{
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+}
+.btn-mic{
+    padding: 35px;
+    border-radius: 50%;
+    border: none;
+    font-size: 25px;
+}
+.btn-mic-anim{
+    animation-name: mic-anim;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+.btn{
+    color: #bbe1fa;
+    background-color: #0f4c75;
+}
+.btn:hover{
+    opacity: 1;
+}
+
+.lang .btn-lang-en{
+    margin-right: -4px;
+}
+
+.opacity{
+    opacity: 0.6;
+}
+
+.copy{
+    margin-right: -4px;
+}
+
+.del{
+    margin-right: -4px;
+}
+
+.div-history{
+    display: none;
+}
+
+.load{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    /*display: none;*/
+}
+.load-1{
+    position: relative;
+    right: 0;
+    width: 100%;
+    height: 33vh;
+    transition: 1s all ease;
+}
+.load-1-class{
+    transform: translate(-100%, 0);
+}
+.scle0{
+    transform: scale(0,0);
+}
+.load-2{
+    position: relative;
+    right: 0;
+    width: 100%;
+    height: 33vh;
+    transition: 1s all ease;
+}
+.load-3{
+    position: relative;
+    right: 0;
+    width: 100%;
+    height: 33vh;
+    transition: 1s all ease;
+}
+.load-img{
+    position: absolute;
+    top: calc(50% - 129px);
+    right: calc(50% - 125px);
+    transition: 1s all ease;
+    z-index: 1001;
+}
+
+.setting-div{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y:scroll ;
+    direction: rtl;
+    display: none;
+}
+.setting-div-header{
+    width: 100%;
+    height: 60px;
+}

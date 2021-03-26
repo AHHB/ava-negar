@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="نرم افرار تحت وب برای تبدیل گفتار به متن">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1b1e21"/>
+    <title>آوا نگار</title>
+    <link rel="shortcut icon" href="style/img/avaNegarLogo@256.png" type="image/x-icon">
+
+    <!-- css link -->
+    <link rel="stylesheet" href="style/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link rel="stylesheet" href="style/css/style.css">
+
+</head>
+<body class="bg-dark-1 container my-4 mt-lg-5">
+
+<!--preload-->
+<div class="load">
+    <div class="load-1 bg-blue-1"></div>
+    <div class="load-2 bg-blue-2"></div>
+    <div class="load-3 bg-blue-3"></div>
+    <img src="style/img/avaNegarLogo@256.png" alt="logo" class="load-img">
+</div>
+<!--preload end-->
+
+<!--not support alert-->
+<div class="alert alert-danger text-center no-support">مرورگر شما از این قابلیت پشتیبانی نمی کند. لطفا از آخرین نسخه
+    گوگل کروم استفاده کنید
+</div>
+<!--not support alert end-->
+
+<!--text editor div-->
+<div class="text-editor text-right">
+    <!--header-->
+    <div class="text-editor-head bg-dark-4">
+        <!--setting button-->
+        <div class="d-inline-block btn-group mt-1 e">
+            <button class="btn fas fa-cog setting"></button>
+        </div>
+        <!--history button-->
+        <div class="d-inline-block btn-group mt-1 d">
+            <button class="btn fas fa-history history"></button>
+        </div>
+        <!--copy & cut buttons-->
+        <div class="d-inline-block btn-group mt-1 b">
+            <button class="btn fas fa-copy copy"></button>
+            <button class="btn fas fa-cut cut"></button>
+        </div>
+        <!--clear page & back space buttons-->
+        <div class="d-inline-block btn-group mt-1 a">
+            <button class="btn fas fas fa-trash del"></button>
+            <button class="btn fas fas fa-backspace back-space"></button>
+        </div>
+        <!--language buttons-->
+        <div class="lang float-lg-left float-md-left btn-group mt-lg-0 mt-md-0 mt-2 mr-2 c">
+            <button class="btn btn-lang-fa fa">فا</button>
+            <button class="btn btn-lang-en en opacity">en</button>
+        </div>
+
+    </div>
+    <!--    header end-->
+    <!--text editor-->
+    <div class="text-editor-body">
+        <textarea id="fk" class="textarea bg-dark-2 text-light text-right"></textarea>
+    </div>
+    <!--text editor end-->
+</div>
+<!--text editor div end-->
+
+<!--microphone button-->
+<div class="mic">
+    <button class="btn-mic fas fa-microphone-slash bg-blue-1"></button>
+</div>
+<!--microphone button end-->
+
+<!--history page-->
+<div class="div-history m-5 bg-dark-3 p-3 rounded text-right ">
+    <h3 class="mb-3">:تاریخچه</h3>
+</div>
+<!--history page end-->
+
+<!--setting page-->
+<div class="setting-div bg-dark-1">
+    <!--setting page header-->
+    <div class="setting-div-header bg-dark-4 text-light text-right p-2 d-inline-block">
+        <h3 class="d-inline-block">تنظیمات</h3>
+        <button class="btn float-left setting-div-back">بازگشت</button>
+    </div>
+    <!--setting page header end-->
+    <!--setting page body-->
+    <div class="text-center text-light">
+        <img src="style/img/avaNegarLogo@256.png" width="150" alt="logo">
+        <p>ورژن:1.0</p>
+        <h5>برنامه نویس: امیرحسین حسنی</h5>
+        <img src="style/img/ahhb_white@80-45.png" width="40" alt="" class="m-2">
+        <br>
+        <a href="https://www.github.com/ahhb" title="github"><i class="fab fa-github animate__animated animate__flash animate__delay-2s "></i></a>
+        <a href="http://www.ahhb.ir" title="personal website"><i class="fas fa-globe"></i></a>
+        <a href="https://telegram.me/A_H_H_B_79" title="telegram"><i class="fab fa-telegram"></i></a>
+    </div>
+
+    <hr class="bg-blue-3">
+
+    <div class="text-light text-right p-3 mb-4">
+        <section class="d-inline-block ">
+            <p class="d-inline-block">تاریخچه: </p>
+            <button class="btn clear-history d-inline-block">پاک کردن</button>
+            <p class="clear-history-alert alert alert-success">تاریخچه پاک شد. </p>
+        </section>
+        <br><br>
+        <div>
+            <h5>دستورات صوتی:</h5>
+            <p>الف علامت سوال = ؟</p>
+            <p>الف علامت تعجب = !</p>
+            <p>الف کاما = ،</p>
+            <p>الف نقطه = .</p>
+            <p>الف دو نقطه = :</p>
+            <p>الف خط فاصله = -</p>
+            <p>الف پرانتز باز = (</p>
+            <p>الف پرانتز بسته = )</p>
+        </div>
+    </div>
+    <!--setting page body end-->
+</div>
+<!--setting page end-->
+
+<!-- java script -->
+<script src="js/jquery.mib-3.6.js"></script>
+<script src="js/shepherd.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(()=>{
+        // service worker
+        async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    await navigator.serviceWorker.register('./sw.js');
+                } catch (e) {
+                    console.log(`SW registration failed`);
+                }
+            }
+        }
+        registerSW();
+
+        //preload
+        setTimeout(()=>{
+            $('.load-img').css({'top':'-2000px'});
+        },200);
+        setTimeout(()=>{
+            $('.load-3').addClass('load-1-class');
+        },400);
+        setTimeout(()=>{
+            $('.load-2').addClass('load-1-class');
+        },700);
+        setTimeout(()=>{
+            $('.load-1').addClass('load-1-class');
+        },1000);setTimeout(()=>{
+            $('.load').hide()
+        },1700);
+
+        // tour
+        const tour = new Shepherd.Tour({
+            defaultStepOptions: {
+                classes: 'shadow-md bg-purple-dark',
+                scrollTo: true
+            }
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-1',
+            text: '<h4>سلام</h4>به <span class="text-info">آوا نگار</span> خوش آمدید',
+            classes: 'example-step-extra-class font',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-2',
+            text: '<span class="text-info">آوا نگار</span> یک نرم افزار تبدیل صوت به متن با استفاده از سرویس گوگل است',
+            classes: 'example-step-extra-class font',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-3',
+            text: 'پاک کردن قسمتی از متن یا تمام آن',
+            attachTo: {
+                element: '.a',
+                on: 'bottom'
+            },
+            classes: 'example-step-extra-class font',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-4',
+            text: 'کپی و کات کردن تمام متن',
+            attachTo: {
+                element: '.b',
+                on: 'bottom'
+            },
+            classes: 'example-step-extra-class',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-5',
+            text: 'انتخاب زبان <p class="text-secondary">(فارسی زبان پیش فرض است)</p>',
+            attachTo: {
+                element: '.c',
+                on: 'bottom'
+            },
+            classes: 'example-step-extra-class',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-6',
+            text: 'نمایش تاریخچه<p class="text-secondary"> (برای پاک کردن تاریخچه وارد منو تنظیمات شوید)</p>',
+            attachTo: {
+                element: '.d',
+                on: 'bottom'
+            },
+            classes: 'example-step-extra-class',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-7',
+            text: 'منو تنظیمات و مشاهده دستورات صوتی',
+            attachTo: {
+                element: '.e',
+                on: 'bottom'
+            },
+            classes: 'example-step-extra-class',
+            buttons: [
+                {
+                    text: 'بعدی',
+                    action: tour.next
+                }
+            ]
+        });
+        //add tour step
+        tour.addStep({
+            id: 'step-8',
+            text: 'برای شروع روی دکمه میکروفون کلیک کنید',
+            attachTo: {
+                element: '.btn-mic',
+                on: 'top'
+            },
+            classes: 'example-step-extra-class',
+            buttons: [
+                {
+                    text: 'تمام',
+                    action: tour.next
+                }
+            ]
+        });
+        // start tour for first time page load
+        if (localStorage.getItem('first')==null){
+            localStorage.setItem('first','1');
+            tour.start();
+        }
+    });
+
+    // text editor height
+    function autoheight(fk) {
+        if (!$(fk).prop('scrollTop')) {
+            do {
+                var b = $(fk).prop('scrollHeight');
+                var h = $(fk).height();
+                $(fk).height(h - 5);
+            }
+            while (b && (b != $(fk).prop('scrollHeight')));
+        };
+        $(fk).height($(fk).prop('scrollHeight') + 20);
+    }
+
+    $(function() {
+        $("#fk").keyup(function (e) {
+            autoheight(this);
+        });
+    });
+
+    //srt Speech Recognition
+    try {
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        var recognition0 = new SpeechRecognition();
+    }catch(e) {
+        // show not support alert
+        console.error(e);
+        $('.no-support').show();
+        $('.text-editor').hide();
+    }
+    const recognition = new SpeechRecognition();
+    recognition.lang = "fa-IR";
+    recognition.interimResults = true;
+
+    //language button function
+    $('.fa').click(()=>{
+        status=3
+        recognition.stop();
+        recognition.lang = "fa-IR";
+        $('.fa').removeClass('opacity');
+        $('.en').addClass('opacity');
+        console.log(recognition);
+    });
+    $('.en').click(()=>{
+        status=3
+        recognition.stop();
+        recognition.lang = "en-US";
+        $('.en').removeClass('opacity');
+        $('.fa').addClass('opacity');
+        console.log(recognition);
+    });
+
+    //button mic start
+    $('.btn-mic').click(() => {
+        recognition.start();
+        $('.btn-mic').removeClass('fa-microphone-slash');
+        $('.btn-mic').addClass('fa-microphone');
+        $('.btn-mic').addClass('btn-mic-anim');
+
+    });
+
+    //increase time listen
+    var status = 0;
+    recognition.addEventListener("end", () => {
+        if (status < 2) {
+            recognition.start();
+            status++;
+        } else {
+            $('.btn-mic').removeClass('fa-microphone');
+            $('.btn-mic').addClass('fa-microphone-slash');
+            $('.btn-mic').removeClass('btn-mic-anim');
+            status = 0;
+            $('.div-history').html(' ');
+            history();
+            showHistory();
+        }
+    });
+
+    //result
+    recognition.addEventListener("result", e => {
+
+        let transcript = Array.from(e.results).map(result => {
+            return result[0];
+        }).map(result => {
+            return result.transcript;
+        }).join(" ");
+
+
+        if (transcript.includes("الف علامت سوال")) {
+            transcript = transcript.replace("الف علامت سوال", "؟");
+        }
+
+        if (transcript.includes("الف تعجب")) {
+            transcript = transcript.replace("الف تعجب", "!");
+        }
+
+        if (transcript.includes("الف کاما")) {
+            transcript = transcript.replace("الف کاما", "،");
+        }
+
+        if (transcript.includes("الف نقطه")) {
+            transcript = transcript.replace("الف نقطه", ".");
+        }
+
+        if (transcript.includes("الف دو نقطه")) {
+            transcript = transcript.replace("الف دو نقطه", ":");
+        }
+
+        if (transcript.includes("الف خط فاصله")) {
+            transcript = transcript.replace("الف خط فاصله", "-");
+        }
+
+        if (transcript.includes("الف پرانتز باز")) {
+            transcript = transcript.replace("الف پرانتز باز", "(");
+        }
+
+        if (transcript.includes("الف پرانتز بسته")) {
+            transcript = transcript.replace("الف پرانتز بسته", ")");
+        }
+
+        if (transcript.includes("الف درصد")) {
+            transcript = transcript.replace("الف درصد", "%");
+        }
+
+        var txt = $('#fk').html();
+
+        if (e.results[0].isFinal) {
+            $('#fk').html(txt + transcript + " ")
+        }
+
+        console.log(transcript)
+    });
+
+    // set item to history
+    function history(){
+        if (localStorage.getItem('history')==null){
+            localStorage.setItem('history','');
+        }
+        let text=$('#fk').val();
+        let val=localStorage.getItem('history');
+        let valAry=val.split('||')
+        if (valAry.length < 15){
+            valAry.unshift(text);
+        }else{
+            valAry.unshift(text);
+            valAry.pop();
+        }
+        let result='';
+        for (let i=0;i<valAry.length;i++){
+            result=result+valAry[i]+' || ';
+        }
+        localStorage.setItem('history',result);
+    }
+
+    //show history
+    function showHistory(){
+        if (localStorage.getItem('history')==null){
+            localStorage.setItem('history','');
+        }
+        let val=localStorage.getItem('history');
+        let valAry=val.split('||')
+        for (let i=0;i<valAry.length;i++){
+            let html=$('.div-history').html();
+            $('.div-history').html(html+`<div class="bg-dark-3 text-light text-right p-2 mt-4 rounded ">${valAry[i]}</div>`);
+        }
+    }
+    showHistory();
+
+    // another button function
+    $('.copy').click(()=>{
+        $('#fk').select();
+        document.execCommand("copy");
+    });
+    $('.cut').click(()=>{
+        $('#fk').select();
+        document.execCommand("copy");
+        $('#fk').val('');
+    });
+    $('.del').click(()=>{
+        $('#fk').val('');
+    });
+    $('.back-space').click(()=>{
+        let x =$('#fk').val();
+        let result='';
+        for (let i=0;i<x.length-1;i++){
+            result=result+x[i]
+        }
+        $('#fk').val(result);
+    });
+    $('.div-history').hide();
+    $('.history').click(()=>{
+        $('.div-history').toggle(10);
+    });
+    $('.setting').click(()=>{
+        $('.setting-div').show(300);
+    });
+    $('.setting-div-back').click(()=>{
+        $('.setting-div').hide(300);
+    });
+    $('.clear-history-alert').hide(100);
+    $('.clear-history').click(()=>{
+        localStorage.removeItem('history');
+        showHistory()
+        $('.div-history').html(' ');
+        $('.clear-history-alert').show(100);
+        setTimeout(()=>{$('.clear-history-alert').hide(100);},2000)
+    });
+
+</script>
+</body>
+</html>
